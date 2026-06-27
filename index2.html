@@ -23,49 +23,53 @@
       position: absolute;
       left: 0; top: 22500px;
       width: 1920px;
-      background: #0f0f0f;
-      padding: 80px 120px 120px;
+      background: #fff;
+      padding: 100px 120px 140px;
       min-height: 1500px;
+      border-top: 1px solid #e8e8e8;
     }
     .gallery-section > h2 {
       font-family: 'Kiwi Maru', serif;
-      font-size: 48px; font-weight: 500;
-      color: #f0f0f0; margin-bottom: 16px;
+      font-size: 52px; font-weight: 500;
+      color: #292929; margin-bottom: 12px;
+      letter-spacing: -1.04px;
     }
     .gallery-section > p {
-      font-size: 24px; color: #666;
+      font-size: 24px; color: #7b7b7b;
       font-family: 'Pretendard', sans-serif;
-      margin-bottom: 60px;
+      margin-bottom: 72px;
+      letter-spacing: -0.48px;
     }
     .g-entry {
-      display: flex; gap: 40px;
-      padding: 48px 0;
-      border-bottom: 1px solid #1a1a1a;
+      display: flex; gap: 48px;
+      padding: 52px 0;
+      border-bottom: 1px solid #f0f0f0;
     }
     .g-silhouette { flex-shrink: 0; width: 72px; text-align: center; }
-    .g-silhouette svg { width: 56px; height: 56px; opacity: 0.5; }
-    .g-meta { font-size: 18px; color: #444; margin-top: 6px; line-height: 1.4; font-family: 'Pretendard', sans-serif; }
+    .g-silhouette svg { width: 56px; height: 56px; opacity: 0.25; }
+    .g-meta { font-size: 18px; color: #aaa; margin-top: 8px; line-height: 1.5; font-family: 'Pretendard', sans-serif; }
     .g-content { flex: 1; }
-    .g-desc { font-size: 20px; color: #666; margin-bottom: 20px; line-height: 1.6; font-family: 'Pretendard', sans-serif; }
+    .g-desc { font-size: 20px; color: #9b9b9b; margin-bottom: 24px; line-height: 1.7; font-family: 'Pretendard', sans-serif; letter-spacing: -0.4px; }
     .g-bubble {
       display: inline-block;
-      background: #1a1a1a; border: 1px solid #2a2a2a;
+      background: #f6f6f6; border: 1px solid #ebebeb;
       border-radius: 16px 16px 16px 4px;
-      padding: 20px 28px; margin-bottom: 20px;
+      padding: 20px 32px; margin-bottom: 24px;
     }
-    .g-keywords { font-size: 32px; font-weight: 600; color: #f0f0f0; letter-spacing: 0.05em; font-family: 'Pretendard', sans-serif; }
-    .g-keywords span { color: #888; margin: 0 14px; }
+    .g-keywords { font-size: 32px; font-weight: 600; color: #292929; letter-spacing: -0.64px; font-family: 'Kiwi Maru', serif; }
+    .g-keywords span { color: #ff5034; margin: 0 14px; font-weight: 400; }
     .g-brands { display: flex; flex-wrap: wrap; gap: 12px; }
     .g-brand-link {
-      padding: 10px 24px;
-      background: #141414; border: 1px solid #2a2a2a;
-      border-radius: 24px; font-size: 20px; color: #aaa;
+      padding: 10px 28px;
+      background: #fff; border: 1px solid #fe4f37;
+      border-radius: 91px; font-size: 20px; color: #ff5034;
       text-decoration: none;
       font-family: 'Pretendard', sans-serif;
-      transition: border-color 0.2s, color 0.2s;
+      letter-spacing: -0.4px;
+      transition: background 0.25s, color 0.25s;
     }
-    .g-brand-link:hover { border-color: #555; color: #f0f0f0; }
-    .g-empty { font-size: 22px; color: #333; padding: 60px 0; font-family: 'Pretendard', sans-serif; }
+    .g-brand-link:hover { background: #ff5034; color: #fff; }
+    .g-empty { font-size: 22px; color: #bbb; padding: 60px 0; font-family: 'Pretendard', sans-serif; }
 
     /* ── NAV ── */
     .nav-link {
@@ -970,8 +974,8 @@
         return '<div class="g-entry">' +
           '<div class="g-silhouette">' +
             '<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">' +
-              '<circle cx="24" cy="14" r="8" fill="#f0f0f0"/>' +
-              '<path d="M8 44c0-8.837 7.163-16 16-16s16 7.163 16 16" fill="#f0f0f0"/>' +
+              '<circle cx="24" cy="14" r="8" fill="#292929"/>' +
+              '<path d="M8 44c0-8.837 7.163-16 16-16s16 7.163 16 16" fill="#292929"/>' +
             '</svg>' +
             '<div class="g-meta">' + entry.age + '<br>' + entry.gender + '</div>' +
           '</div>' +
