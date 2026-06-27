@@ -690,14 +690,17 @@
       scaleToFit();
 
       function checkFadeIn() {
+        const scale = window.innerWidth / 1920;
         const viewportH = window.innerHeight;
+        const scrollY = window.scrollY;
         document.querySelectorAll('.fade-in:not(.visible)').forEach(function(el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top < viewportH - 60) el.classList.add('visible');
+          // 스케일된 페이지 안의 절대 위치를 직접 계산
+          const elTop = el.offsetTop * scale;
+          if (elTop < scrollY + viewportH * 0.95) el.classList.add('visible');
         });
       }
       window.addEventListener('scroll', checkFadeIn);
-      setTimeout(checkFadeIn, 100);
+      setTimeout(checkFadeIn, 200);
 
       window.addEventListener('scroll', function() {
         const scale = window.innerWidth / 1920;
@@ -751,9 +754,9 @@
   <div class="badge badge-mix">Mix</div>
 
   <!-- MIX ON YOUR MODE -->
-  <p class="mix-1 fade-in">Mix on</p>
-  <p class="mix-2 fade-in">Your</p>
-  <p class="mix-3 fade-in">Mode</p>
+  <p class="mix-1">Mix on</p>
+  <p class="mix-2">Your</p>
+  <p class="mix-3">Mode</p>
   <p class="mix-year fade-in">-2026</p>
   <div class="mix-lamp">
     <img src="Coral%20Breeze2.png" alt="Coral Breeze" />
