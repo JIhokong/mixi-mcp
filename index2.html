@@ -13,7 +13,7 @@
     .page {
       position: relative;
       width: 1920px;
-      height: 16600px;
+      height: 24000px;
       background: #fff;
       transform-origin: top left;
     }
@@ -21,7 +21,7 @@
     /* ── GALLERY SECTION ── */
     .gallery-section {
       position: absolute;
-      left: 0; top: 15050px;
+      left: 0; top: 22500px;
       width: 1920px;
       background: #0f0f0f;
       padding: 80px 120px 120px;
@@ -664,7 +664,7 @@
       const scale = window.innerWidth / 1920;
       page.style.transform = 'scale(' + scale + ')';
       page.style.transformOrigin = 'top left';
-      document.body.style.height = (16600 * scale) + 'px';
+      document.body.style.height = (24000 * scale) + 'px';
     }
     window.addEventListener('resize', scaleToFit);
     window.addEventListener('DOMContentLoaded', function() {
@@ -900,6 +900,51 @@
     <div class="card-large-img">
       <img src="https://www.figma.com/api/mcp/asset/c06d0e54-e379-4928-a09d-068ede061080" alt="lamp" />
     </div>
+  </div>
+
+  <!-- PRODUCT USAGE SECTION: Color Adjustment + Brightness Control -->
+
+  <!-- Color Adjustment: title & desc -->
+  <p style="position:absolute; left:69px; top:15183px; font-family:'Kiwi Maru',serif; font-weight:500; font-size:36px; line-height:1.5; letter-spacing:-0.72px; color:#292929; white-space:nowrap;">Color Adjustment</p>
+  <p style="position:absolute; left:69px; top:15256px; font-family:'Pretendard','Apple SD Gothic Neo',sans-serif; font-weight:400; font-size:36px; line-height:1.5; letter-spacing:-0.72px; color:#434343; width:444px;">노브를 좌우로 회전하여 조명의 빛 색상을 변경할 수 있습니다.</p>
+
+  <!-- Color Adjustment: large rounded image -->
+  <div style="position:absolute; left:754px; top:15183px; width:1453px; height:1417px; border-radius:62px; overflow:hidden;">
+    <img src="https://www.figma.com/api/mcp/asset/98b69db7-8bb5-4205-8262-386f032098ee" alt="" style="width:100%; height:100%; object-fit:cover; display:block;" />
+  </div>
+
+  <!-- 3 small lamp color samples -->
+  <img src="https://www.figma.com/api/mcp/asset/98f85019-2510-42a0-8143-1e9a82cbb588" alt="lamp color 1" style="position:absolute; left:165px; top:16319px; width:190px; height:281px; object-fit:cover;" />
+  <img src="https://www.figma.com/api/mcp/asset/b2d7383f-fdd1-415b-a0fb-9e1abf4b6b57" alt="lamp color 2" style="position:absolute; left:364px; top:16319px; width:190px; height:281px; object-fit:cover;" />
+  <img src="https://www.figma.com/api/mcp/asset/54c5c408-3467-47f5-b6d1-c24019b133d9" alt="lamp color 3" style="position:absolute; left:563px; top:16319px; width:190px; height:281px; object-fit:cover;" />
+
+  <!-- Brightness Control: title & desc (right-aligned) -->
+  <p style="position:absolute; right:75px; top:16656px; font-family:'Kiwi Maru',serif; font-weight:500; font-size:36px; line-height:1.5; letter-spacing:-0.72px; color:#292929; text-align:right; white-space:nowrap;">Brightness Control</p>
+  <div style="position:absolute; right:75px; top:16729px; width:553px; font-family:'Pretendard','Apple SD Gothic Neo',sans-serif; font-weight:400; font-size:36px; line-height:1.5; letter-spacing:-0.72px; color:#434343; text-align:right;">
+    <p style="margin:0;">노브를 지퍼처럼 위아래로 여닫는 동작을 통해 빛의 강도를 조절할 수 있습니다.</p>
+    <p style="margin:0;">열릴수록 빛이 더욱 밝아집니다.</p>
+  </div>
+
+  <!-- Brightness Control: left-side image (partially off screen) -->
+  <div style="position:absolute; left:-143px; top:16656px; width:1272px; height:1374px; border-radius:50px; overflow:hidden;">
+    <img src="https://www.figma.com/api/mcp/asset/c9a71dd2-ff31-473c-b357-66dbe97d5264" alt="" style="position:absolute; width:162.07%; height:100%; left:-46.46%; top:0; object-fit:cover;" />
+  </div>
+
+  <!-- Product detail: lamp + lifestyle photos -->
+  <img src="https://www.figma.com/api/mcp/asset/921e39eb-1b9c-485e-9692-1436f9c6269a" alt="product detail" style="position:absolute; left:1088px; top:17661px; width:408px; height:408px; object-fit:cover;" />
+  <img src="https://www.figma.com/api/mcp/asset/4c5ce60d-dbb7-4a00-9eeb-23dc5cfc9e2a" alt="product detail" style="position:absolute; left:1570px; top:17681px; width:388px; height:388px; object-fit:cover;" />
+  <div style="position:absolute; left:1421px; top:17704px; width:213px; height:326px; overflow:hidden;">
+    <img src="https://www.figma.com/api/mcp/asset/598bd5e9-7070-4fa4-b0fa-9a0091b6c416" alt="" style="position:absolute; width:361%; height:130.55%; left:-130.39%; top:-15.04%;" />
+  </div>
+
+  <!-- Large lifestyle composite photo -->
+  <div style="position:absolute; left:-919px; top:18069px; width:3083px; height:2886px; overflow:hidden;">
+    <img src="https://www.figma.com/api/mcp/asset/3ce253f9-24e1-4809-ac52-0423c3609be0" alt="" style="position:absolute; width:100%; height:106.83%; top:-3.36%; left:0;" />
+  </div>
+
+  <!-- Package image -->
+  <div style="position:absolute; left:-2px; top:20955px; width:1934px; height:1448px; overflow:hidden;">
+    <img src="https://www.figma.com/api/mcp/asset/558f37d4-f185-460f-8529-dbbd8bffdaee" alt="mixi package" style="width:100%; height:100%; object-fit:cover; display:block;" />
   </div>
 
   <!-- GALLERY SECTION -->
