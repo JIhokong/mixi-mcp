@@ -1,20 +1,315 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MIXI</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>mixi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&family=Noto+Serif+KR:wght@700;900&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; overflow-x: hidden; background: #fff; }
+
+    .page {
+      position: relative;
+      width: 1920px;
+      height: 15000px;
+      background: #fff;
+      transform-origin: top left;
+    }
+
+    /* ── NAV ── */
+    .nav-link {
+      position: absolute;
+      font-family: 'Kiwi Maru', serif;
+      font-weight: 400;
+      font-size: 32px;
+      line-height: 1.5;
+      letter-spacing: -0.96px;
+      color: #000;
+      text-decoration: none;
+      top: 62px;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -4px;
+      width: 0; height: 2px;
+      background: #ff5034;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+    .nav-link:hover { color: #ff5034; }
+    .nav-products { left: 1237px; }
+    .nav-services  { left: 1430px; }
+    .nav-about     { left: 1623px; }
+
+    /* ── HERO ── */
+    .ellipse7 { position: absolute; left: 1204px; top: 626px; width: 477px; height: 477px; }
+    .ellipse7 img { position: absolute; width: calc(477px * 3.15); height: calc(477px * 3.15); top: calc(-477px * 1.076); left: calc(-477px * 1.076); }
+    .hero-photo { position: absolute; left: 108px; top: 593px; width: 1272px; height: 1016px; overflow: hidden; will-change: transform; }
+    .hero-photo img { width: 101.81%; height: 100.01%; object-fit: cover; }
+    .hero-logo { position: absolute; left: 17.18%; right: 19.79%; top: 238px; height: 471px; }
+    .hero-logo img { width: 100%; height: 100%; }
+    .hero-tagline { position: absolute; left: 1119px; top: 807px; font-family: 'Kiwi Maru', serif; font-weight: 500; font-size: 58px; line-height: 34.996px; color: #fff; white-space: nowrap; }
+    .hero-product { position: absolute; left: 812px; top: 1342px; width: 998.667px; height: 749px; display: flex; align-items: center; justify-content: center; }
+    .hero-product-inner { transform: rotate(-90deg); width: 749px; height: 998.667px; flex-shrink: 0; }
+    .hero-product-inner img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* gradient overlays */
+    .grad-left { position: absolute; left: 723px; top: 1657px; width: 206px; height: 155px; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+    .grad-left-inner { transform: rotate(90deg); width: 155px; height: 206px; background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #fff 41.597%); }
+    .grad-right { position: absolute; left: 1696px; top: 1554px; width: 206px; height: 205px; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+    .grad-right-inner { transform: rotate(90deg) scaleY(-1); width: 205px; height: 206px; background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, #fff 41.597%); }
+
+    /* ── BADGES ── */
+    .badge { position: absolute; display: flex; align-items: center; justify-content: center; padding: 11px 23px; border: 1px solid #fe4f37; border-radius: 91px; font-family: 'Kiwi Maru', serif; font-weight: 500; font-size: 58px; line-height: 1.5; color: #ff5034; white-space: nowrap; cursor: pointer; transition: background 0.25s, color 0.25s; }
+    .badge:hover { background: #ff5034; color: #fff; }
+    .badge-position { left: 108px; top: 1680px; }
+    .badge-rotate   { left: 450px; top: 1680px; }
+    .badge-mix      { left: 108px; top: 1842px; }
+
+    /* ── MIX ON YOUR MODE ── */
+    .mix-1 { position: absolute; left: 131px; top: 2237px; font-family: 'Noto Serif KR', 'Kiwi Maru', serif; font-weight: 900; font-size: 168.925px; line-height: 0.98; letter-spacing: -5.0678px; white-space: nowrap; background: linear-gradient(137.2deg, #ff5034 37.957%, #c3fff7 82.68%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .mix-2 { position: absolute; left: 650.26px; top: 2524px; font-family: 'Noto Serif KR', 'Kiwi Maru', serif; font-weight: 900; font-size: 168.925px; line-height: 0.98; letter-spacing: -5.0678px; color: rgba(255,80,52,0.52); white-space: nowrap; }
+    .mix-3 { position: absolute; left: 319px; top: 2828px; font-family: 'Noto Serif KR', 'Kiwi Maru', serif; font-weight: 900; font-size: 168.925px; line-height: 0.98; letter-spacing: -5.0678px; color: rgba(255,80,52,0.52); white-space: nowrap; }
+    .mix-year { position: absolute; left: 859px; top: 2882px; font-family: 'Kiwi Maru', serif; font-weight: 500; font-size: 64px; line-height: 1.5; letter-spacing: -1.28px; color: #292929; white-space: nowrap; }
+    .mix-lamp { position: absolute; left: calc(50% + 579.5px); transform: translateX(-50%); top: 2091px; width: 515px; height: 1031px; }
+    .mix-lamp img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+    @keyframes lamp-cycle { 0%,28%{opacity:1} 33%,95%{opacity:0} 100%{opacity:1} }
+    .mix-lamp img:nth-child(1) { animation: lamp-cycle 4.5s 0s infinite; }
+    .mix-lamp img:nth-child(2) { animation: lamp-cycle 4.5s 1.5s infinite; opacity: 0; }
+    .mix-lamp img:nth-child(3) { animation: lamp-cycle 4.5s 3s infinite; opacity: 0; }
+
+    /* ── MOOD SLIDESHOW ── */
+    .mood-slideshow { position: absolute; left: 0; top: 4419px; width: 1920px; height: 1908px; overflow: hidden; }
+    .mood-img { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; }
+    @keyframes mood-cycle { 0%,30%{opacity:1} 33%,97%{opacity:0} 100%{opacity:1} }
+    .mood-img-1 { animation: mood-cycle 3s 0s infinite; }
+    .mood-img-2 { animation: mood-cycle 3s 1s infinite; opacity: 0; }
+    .mood-img-3 { animation: mood-cycle 3s 2s infinite; opacity: 0; }
+
+    /* ── MOOD TEXT ── */
+    .mood-text { position: absolute; left: 650px; top: 4557px; width: 1149px; font-family: 'Pretendard', sans-serif; font-weight: 500; font-size: 32px; line-height: 1.5; letter-spacing: 0.64px; color: #fff; text-align: right; z-index: 1; }
+
+    /* ── HOME FURNISHING SPLIT ── */
+    .split-photo { position: absolute; left: 0; top: 6469px; width: 1186px; height: 1080px; overflow: hidden; }
+    .split-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .split-photo-gradient { position: absolute; left: 0; top: 7163px; width: 1186px; height: 386px; background: linear-gradient(to bottom, rgba(18,18,18,0), #121212); pointer-events: none; }
+    .split-red { position: absolute; left: 1186px; top: 6469px; width: 734px; height: 1080px; background: #ff5034; }
+    .split-heading { position: absolute; left: 1261px; top: 6577px; font-family: 'Kiwi Maru', serif; font-weight: 500; font-size: 64px; line-height: 0.98; letter-spacing: -1.92px; color: #fff; white-space: nowrap; }
+    .split-sub { position: absolute; left: 1433px; transform: translateX(-50%); top: 6671px; font-family: 'Pretendard', sans-serif; font-weight: 600; font-size: 32px; line-height: 1.5; letter-spacing: 0.64px; color: #ffccc6; text-align: center; white-space: nowrap; }
+    .split-desc { position: absolute; left: 1261px; top: 7312px; font-family: 'Pretendard', sans-serif; font-weight: 400; font-size: 20px; line-height: 1.5; letter-spacing: -0.4px; color: rgba(255,255,255,0.89); }
+
+    /* ── BRAND / MAGAZINE ── */
+    .brand-left { position: absolute; left: 0; top: 7523px; width: 958.807px; height: 1198.509px; overflow: hidden; }
+    .brand-left img { width: 100%; height: 100%; object-fit: cover; }
+    .brand-right { position: absolute; left: 959px; top: 7523px; width: 1038px; height: 1198.51px; overflow: hidden; }
+    .brand-right img { position: absolute; width: 111.84%; height: 129.15%; left: -14.66%; top: -15.15%; object-fit: cover; }
+    .brand-logo { position: absolute; left: 0; top: 7523px; width: 271px; height: 189.389px; }
+    .brand-logo img { width: 100%; height: 100%; }
+    .brand-text-zeitschrift { position: absolute; left: 61.68px; top: 7735.04px; font-family: 'Kiwi Maru', serif; font-weight: 500; font-size: 15.956px; line-height: 1.5; letter-spacing: -0.3191px; color: #000; }
+    .brand-text-year { position: absolute; left: 670.82px; top: 7716.73px; font-family: 'Kiwi Maru', serif; font-weight: 500; font-size: 74.668px; line-height: 1.5; letter-spacing: -1.4934px; color: #fff; white-space: nowrap; }
+    .brand-text-light { position: absolute; left: 61.68px; top: 8367.3px; font-family: 'Kiwi Maru', serif; font-weight: 500; font-size: 43.583px; line-height: 1.5; letter-spacing: -0.8717px; color: #000; }
+    .brand-text-function { position: absolute; left: 61.68px; top: 8518.63px; font-family: 'Kiwi Maru', serif; font-weight: 500; font-size: 17.729px; line-height: 1.5; letter-spacing: -0.3546px; color: #000; }
+    .brand-text-collection { position: absolute; left: 61.68px; top: 8609.22px; font-family: 'Kiwi Maru', serif; font-weight: 500; font-size: 15.956px; line-height: 1.5; letter-spacing: -0.3191px; color: #000; }
+
+    /* ── FULL-WIDTH IMAGE ── */
+    .full-image { position: absolute; left: -380px; top: 8722px; width: 2468px; height: 1988px; overflow: hidden; }
+    .full-image img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ── PRODUCT SECTION ── */
+    .prod-bg { position: absolute; left: -6px; top: 10710.12px; width: 1930px; height: 1122px; overflow: hidden; pointer-events: none; }
+    .prod-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.4; }
+    .prod-logo { position: absolute; left: 3.96%; right: 66.74%; top: 10394.12px; height: 219.002px; }
+    .prod-logo img { width: 100%; height: 100%; }
+    .prod-tagline { position: absolute; left: 690px; top: 10577.12px; font-family: 'Kiwi Maru', serif; font-weight: 500; font-size: 36px; line-height: 34.996px; color: #c3fff7; white-space: nowrap; }
+    .prod-lamp { position: absolute; left: calc(50% - 570px); transform: translateX(-50%); top: 10732.12px; width: 550px; height: 1100px; }
+    .prod-lamp img { width: 100%; height: 100%; object-fit: contain; }
+    .prod-name { position: absolute; left: 1089px; top: 10914.12px; font-family: 'Kiwi Maru', serif; font-weight: 500; font-size: 48px; line-height: 34.996px; color: #000; white-space: nowrap; }
+    .prod-desc { position: absolute; left: 1089px; top: 11005.12px; font-family: 'Kiwi Maru', serif; font-weight: 500; font-size: 36px; line-height: 1.5; letter-spacing: -0.72px; color: #7b7b7b; }
+    .prod-price { position: absolute; left: 1089px; top: 11169.12px; font-family: 'Kiwi Maru', serif; font-weight: 400; font-size: 40px; line-height: 1.5; letter-spacing: -0.8px; color: #ff5034; white-space: nowrap; }
+    .prod-preview-label { position: absolute; left: 1089px; top: 11472.12px; font-family: 'Kiwi Maru', serif; font-weight: 500; font-size: 24px; line-height: 34.996px; white-space: nowrap; }
+    .swatch { position: absolute; top: 11564.12px; width: 136px; height: 136px; border-radius: 50%; cursor: pointer; transition: transform 0.2s, outline 0.2s; }
+    .swatch img { width: 100%; height: 100%; object-fit: contain; }
+    .swatch-1 { left: 1089px; } .swatch-2 { left: 1294px; } .swatch-3 { left: 1500px; }
+    .swatch-active { outline: 4px solid #ff5034; outline-offset: 6px; }
+    .swatch:hover { transform: scale(1.1); }
+
+    /* ── LINEUP ── */
+    .lineup-lamp-1 { position: absolute; left: 72px; top: 11943px; width: 349px; height: 667px; overflow: hidden; cursor: pointer; transition: transform 0.35s ease; }
+    .lineup-lamp-1 img { position: absolute; width: 329.8%; height: 100.06%; left: -121.78%; top: -0.03%; object-fit: cover; }
+    .lineup-lamp-2 { position: absolute; left: 800px; top: 11943px; width: 321px; height: 659px; overflow: hidden; cursor: pointer; transition: transform 0.35s ease; }
+    .lineup-lamp-2 img { position: absolute; width: 354.21%; height: 100.04%; left: -127.1%; top: -0.02%; object-fit: cover; }
+    .lineup-lamp-3 { position: absolute; left: 1097px; top: 11935px; width: 823px; height: 658px; overflow: hidden; cursor: pointer; transition: transform 0.35s ease; }
+    .lineup-lamp-3 img { width: 100%; height: 100%; object-fit: cover; }
+    .lineup-lamp-1:hover { transform: scale(1.04); } .lineup-lamp-2:hover { transform: scale(1.04); } .lineup-lamp-3:hover { transform: scale(1.04); }
+    .lineup-name-1 { position: absolute; left: 183px;  top: 12631.12px; font-family: 'Kiwi Maru', serif; font-weight: 500; font-size: 24px; line-height: 1.5; letter-spacing: -0.48px; color: #292929; white-space: nowrap; }
+    .lineup-name-2 { position: absolute; left: 877px;  top: 12631.12px; font-family: 'Kiwi Maru', serif; font-weight: 500; font-size: 24px; line-height: 1.5; letter-spacing: -0.48px; color: #292929; white-space: nowrap; }
+    .lineup-name-3 { position: absolute; left: 1569px; top: 12631.12px; font-family: 'Kiwi Maru', serif; font-weight: 500; font-size: 24px; line-height: 1.5; letter-spacing: -0.48px; color: #292929; white-space: nowrap; }
+    .lineup-desc-1 { position: absolute; left: 143px;  top: 12714.12px; font-family: 'Pretendard', sans-serif; font-weight: 400; font-size: 20px; line-height: 1.5; letter-spacing: -0.4px; color: #434343; white-space: nowrap; }
+    .lineup-desc-2 { position: absolute; left: 843px;  top: 12714.12px; font-family: 'Pretendard', sans-serif; font-weight: 400; font-size: 20px; line-height: 1.5; letter-spacing: -0.4px; color: #434343; white-space: nowrap; }
+    .lineup-desc-3 { position: absolute; left: 1567px; top: 12714.12px; font-family: 'Pretendard', sans-serif; font-weight: 400; font-size: 20px; line-height: 1.5; letter-spacing: -0.4px; color: #434343; white-space: nowrap; }
+
+    /* ── TWO ROUNDED CARDS ── */
+    .card-left { position: absolute; left: 71.5px; top: 12971.05px; width: 856.522px; height: 964.012px; border-radius: 50px; background: #f6f6f6; overflow: hidden; }
+    .card-right { position: absolute; left: 989.98px; top: 12971.05px; width: 856.522px; height: 964.012px; border-radius: 50px; background: #f6f6f6; overflow: hidden; }
+    .card-lamp-1 { position: absolute; left: 186.69px; top: 15.84px; width: 464.935px; height: 932.53px; overflow: hidden; }
+    .card-lamp-1 img { position: absolute; width: 320.92%; height: 100%; left: -119.78%; object-fit: cover; }
+    .card-lamp-2 { position: absolute; left: 84.86px; top: 156.15px; width: 687.213px; height: 651.337px; overflow: hidden; }
+    .card-lamp-2 img { position: absolute; width: 264.7%; height: 174.55%; left: -88.07%; top: -37.55%; object-fit: cover; }
+
+    /* ── LARGE ROUNDED CARD ── */
+    .card-large { position: absolute; left: 71px; top: 13957px; width: 1776px; height: 968px; border-radius: 62.106px; overflow: hidden; }
+    .card-large-bg { position: absolute; left: 0.5px; top: -94px; width: 2384.885px; height: 1743.643px; background: #f6f6f6; }
+    .card-large-img { position: absolute; left: -135px; top: -186.92px; width: 1997.891px; height: 1248.682px; }
+    .card-large-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ── SCROLL FADE-IN ── */
+    .fade-in { opacity: 0; transition: opacity 0.8s ease; }
+    .fade-in.visible { opacity: 1; }
+  </style>
+
+  <script>
+    function scaleToFit() {
+      const page = document.querySelector('.page');
+      const scale = window.innerWidth / 1920;
+      page.style.transform = 'scale(' + scale + ')';
+      page.style.transformOrigin = 'top left';
+      document.body.style.height = (15000 * scale) + 'px';
+    }
+    window.addEventListener('resize', scaleToFit);
+    window.addEventListener('DOMContentLoaded', function() {
+      scaleToFit();
+      function checkFadeIn() {
+        const viewportH = window.innerHeight;
+        document.querySelectorAll('.fade-in:not(.visible)').forEach(function(el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < viewportH - 60) el.classList.add('visible');
+        });
+      }
+      window.addEventListener('scroll', checkFadeIn);
+      setTimeout(checkFadeIn, 100);
+      window.addEventListener('scroll', function() {
+        const scale = window.innerWidth / 1920;
+        const scrollY = window.scrollY / scale;
+        const photo = document.querySelector('.hero-photo');
+        if (photo) photo.style.transform = 'translateY(' + (scrollY * 0.25) + 'px)';
+      });
+    });
+  </script>
 </head>
 <body>
-
-  <!-- 학생들은 이 아래에 브랜드 페이지 내용을 작성하세요 -->
-
-
-
+<div class="page">
+  <a class="nav-link nav-products" href="#">Products</a>
+  <a class="nav-link nav-services" href="#">Services</a>
+  <a class="nav-link nav-about"    href="#">About mixi</a>
+  <div class="ellipse7"><img src="https://www.figma.com/api/mcp/asset/c9419790-960e-479d-acca-d4da6f7b4279" alt="" /></div>
+  <div class="hero-photo"><img src="https://www.figma.com/api/mcp/asset/c91b6c62-70fa-41f9-ac4f-d1f46a504432" alt="lifestyle" /></div>
+  <div class="hero-logo"><img src="https://www.figma.com/api/mcp/asset/372ae658-4507-4e58-aa4b-ce57af3f28d8" alt="mixi" /></div>
+  <p class="hero-tagline fade-in">Create your own light.</p>
+  <div class="hero-product"><div class="hero-product-inner"><img src="https://www.figma.com/api/mcp/asset/75e2a9e0-49cb-483a-af84-1a1f2a2a9ca1" alt="product" /></div></div>
+  <div class="grad-left"><div class="grad-left-inner"></div></div>
+  <div class="grad-right"><div class="grad-right-inner"></div></div>
+  <div class="badge badge-position">Position</div>
+  <div class="badge badge-rotate">Rotate</div>
+  <div class="badge badge-mix">Mix</div>
+  <p class="mix-1 fade-in">Mix on</p>
+  <p class="mix-2 fade-in">Your</p>
+  <p class="mix-3 fade-in">Mode</p>
+  <p class="mix-year fade-in">-2026</p>
+  <div class="mix-lamp">
+    <img src="Coral%20Breeze2.png" alt="Coral Breeze" />
+    <img src="Lemon%20Sorbet2.png" alt="Lemon Sorbet" style="opacity:0;" />
+    <img src="Lavender%20Cloud2.png" alt="Lavender Cloud" style="opacity:0;" />
+  </div>
+  <video id="product-video" style="position:absolute;left:-6px;top:3212px;width:1930px;height:1207px;object-fit:cover;display:block;" src="Video.mp4" autoplay muted loop playsinline></video>
+  <audio id="product-sound" src="Sound.mp3" preload="auto"></audio>
+  <script>
+    (function() {
+      var video = document.getElementById('product-video');
+      var sound = document.getElementById('product-sound');
+      var played = false;
+      sound.volume = 0.3;
+      video.addEventListener('play', function() {
+        if (played) return; played = true;
+        sound.currentTime = 0; sound.play();
+        setTimeout(function() { sound.pause(); sound.currentTime = 0; }, 6000);
+      });
+    })();
+  </script>
+  <div class="mood-slideshow">
+    <img src="Mood1.png" class="mood-img mood-img-1" />
+    <img src="Mood2.png" class="mood-img mood-img-2" />
+    <img src="Mood3.png" class="mood-img mood-img-3" />
+  </div>
+  <p class="mood-text">빛은 공간을 밝히는 것을 넘어, 분위기를 만듭니다. 당신의 취향에 맞춰 컬러를 조합하고<br>직접 완성한 조명으로 나만의 무드를 표현해보세요. 매일 머무는 공간이 더욱 특별해집니다.</p>
+  <div class="split-photo"><img src="https://www.figma.com/api/mcp/asset/82aa5dbe-26f9-43f1-b856-bbceccfdf573" alt="home interior" /></div>
+  <div class="split-photo-gradient"></div>
+  <div class="split-red"></div>
+  <p class="split-heading fade-in">Home Furnishing</p>
+  <p class="split-sub fade-in">집은 내가 브랜딩 하는 공간</p>
+  <div class="split-desc fade-in">
+    <p>MZ세대 홈루덴스족에게 집은 더 이상 단순한 휴식 공간이 아닙니다. 자신의</p>
+    <p>취향과 개성을 드러내고, 놀이와 여가를 즐기는 무대로 소비되며, 공간을 꾸미고</p>
+    <p>연출하는 과정 즉 가구와 소품, 가전을 통한 홈퍼니싱은 개인의 정체성을 가장</p>
+    <p>직접적으로 보여주는 중요한 수단으로 자리 잡았습니다. 이런 이유로, 집은 이제</p>
+    <p>자기 표현과 라이프스타일을 드러내는 무대이자 개인의 취향을 시각적으로</p>
+    <p>경험할 수 있는 장으로서 의미를 가지게 되었습니다.</p>
+  </div>
+  <div class="brand-left"><img src="https://www.figma.com/api/mcp/asset/42149865-c0f0-4a9c-8122-5d800bea81f8" alt="brand" /></div>
+  <div class="brand-right"><img src="https://www.figma.com/api/mcp/asset/1c5e98ed-5bd0-4e3c-bfaf-895d7c4518c4" alt="brand" /></div>
+  <div class="brand-logo"><img src="https://www.figma.com/api/mcp/asset/895eb380-8370-4f54-b97d-54ec9f426ba3" alt="mixi" /></div>
+  <p class="brand-text-zeitschrift">zeitschrift<br>fur gestaltung<br>-1926</p>
+  <p class="brand-text-year">-2026</p>
+  <p class="brand-text-light">Light<br>Unzipped</p>
+  <p class="brand-text-function">Function hides<br>where design begins.</p>
+  <p class="brand-text-collection">mixi lighting<br>collection</p>
+  <div class="full-image"><img src="https://www.figma.com/api/mcp/asset/2f36154b-0b85-440f-a1be-8ad6e8b21d08" alt="" /></div>
+  <div class="prod-bg"><img src="https://www.figma.com/api/mcp/asset/f3722295-dd40-442b-b7b7-7e7bc34ca447" alt="" /></div>
+  <div class="prod-logo"><img src="https://www.figma.com/api/mcp/asset/63511299-9563-4718-9120-5fdbf7bf89d9" alt="mixi" /></div>
+  <p class="prod-tagline">Create your own light.</p>
+  <div class="prod-lamp"><img id="prod-img" src="Coral%20Breeze.png" alt="Coral Breeze" /></div>
+  <p class="prod-name fade-in">Coral Breeze</p>
+  <div class="prod-desc fade-in" id="prod-desc"><p>The warmth of coral hues and the</p><p>freshness of a cool breeze.</p></div>
+  <p class="prod-price fade-in">43,000₩</p>
+  <p class="prod-preview-label fade-in">Press the button to preview the colors.</p>
+  <div class="swatch swatch-1 swatch-active" onclick="selectColor(1)"><img src="Color1.png" /></div>
+  <div class="swatch swatch-2" onclick="selectColor(2)"><img src="Color2.png" /></div>
+  <div class="swatch swatch-3" onclick="selectColor(3)"><img src="Color3.png" /></div>
+  <script>
+    var colorData = {
+      1:{name:'Coral Breeze',img:'Coral%20Breeze.png',desc:'<p>The warmth of coral hues and the</p><p>freshness of a cool breeze.</p>'},
+      2:{name:'Lemon Sorbet',img:'Lemon%20Sorbet.png',desc:'<p>The bright zest of lemon and</p><p>the sweetness of a sorbet.</p>'},
+      3:{name:'Lavender Cloud',img:'Lavender%20Cloud.png',desc:'<p>Soft like a lavender cloud,</p><p>gentle and calming.</p>'},
+    };
+    function selectColor(num){
+      var d=colorData[num];
+      document.querySelector('.prod-name').textContent=d.name;
+      document.getElementById('prod-desc').innerHTML=d.desc;
+      document.getElementById('prod-img').src=d.img;
+      document.querySelectorAll('.swatch').forEach(function(el){el.classList.remove('swatch-active');});
+      document.querySelector('.swatch-'+num).classList.add('swatch-active');
+    }
+  </script>
+  <div class="lineup-lamp-1"><img src="https://www.figma.com/api/mcp/asset/4bdd3622-fbf6-4979-905a-557afd1babaf" alt="Coral Breeze" /></div>
+  <div class="lineup-lamp-2"><img src="https://www.figma.com/api/mcp/asset/cfa6d7ed-4656-4001-8bd8-e86090b3e67c" alt="Lemon Sorbet" /></div>
+  <div class="lineup-lamp-3"><img src="https://www.figma.com/api/mcp/asset/57f86738-c13e-46fc-a7de-8e889d0cbb3a" alt="Lavender Cloud" /></div>
+  <p class="lineup-name-1">Coral Breeze</p>
+  <p class="lineup-name-2">Lemon Sorbet</p>
+  <p class="lineup-name-3">Lavender Cloud</p>
+  <p class="lineup-desc-1">산호빛의 따뜻함과 시원한 바람</p>
+  <p class="lineup-desc-2">레몬 샤베트의 상큼하고 산뜻함</p>
+  <p class="lineup-desc-3">라벤더빛 구름처럼 포근함</p>
+  <div class="card-left"><div class="card-lamp-1"><img src="https://www.figma.com/api/mcp/asset/0148f32b-25a0-4273-bed6-1593f741904d" alt="lamp" /></div></div>
+  <div class="card-right"><div class="card-lamp-2"><img src="https://www.figma.com/api/mcp/asset/b9368243-c052-4a1a-86c7-2b8c6af7a66b" alt="lamp" /></div></div>
+  <div class="card-large"><div class="card-large-bg"></div><div class="card-large-img"><img src="https://www.figma.com/api/mcp/asset/c2f9653b-edd4-402c-bfd4-1c10dbba0ec6" alt="lamp" /></div></div>
+</div>
+</body>
+</html>
   <!-- 갤러리 바로가기 버튼 — 수정하지 마세요 -->
   <a href="https://mixi-mcp.typica-918.workers.dev/gallery">
     다른 사람들의 MIXI 취향 보기 →
-  </a>
-
-</body>
-</html>
