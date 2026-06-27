@@ -756,17 +756,16 @@
   <audio id="product-sound" src="Sound.mp3" preload="auto"></audio>
   <script>
     (function() {
-      var video = document.getElementById('product-video');
       var sound = document.getElementById('product-sound');
       var played = false;
       sound.volume = 0.3;
-      video.addEventListener('play', function() {
+      document.addEventListener('click', function() {
         if (played) return;
         played = true;
         sound.currentTime = 0;
         sound.play();
         setTimeout(function() { sound.pause(); sound.currentTime = 0; }, 6000);
-      });
+      }, { once: true });
     })();
   </script>
 
